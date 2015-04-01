@@ -1,0 +1,10 @@
+Django==1.7.7
+django-classy-tags==0.6.1
+django-cms==3.0.12
+django-mptt==0.6.1
+django-sekizai==0.8.1
+djangocms-admin-style==0.2.5
+html5lib==0.999
+six==1.9.0
+djangocms-text-ckeditor==2.4.3
+sorl-thumbnail==12.2

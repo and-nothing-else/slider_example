@@ -1,0 +1,38 @@
+{% load sekizai_tags thumbnail %}
+
+<h1>{{ instance.get_title }}</h1>
+{% if instance.description %}
+<article>{{ instance.description|safe }}</article>
+{% endif %}
+<div id="carousel-example-{{ instance.id }}" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+{% for photo in instance.gallery.photo_set.all %}
+        <li data-target="#carousel-example-{{ instance.id }}" data-slide-to="{{ forloop.counter0 }}"{% if forloop.first %} class="active"{% endif %}></li>
+{% endfor %}
+    </ol>
+    <div class="carousel-inner" role="listbox">
+{% for photo in instance.gallery.photo_set.all %}
+    <div class="item{% if forloop.first %} active{% endif %}">
+{% thumbnail photo.file "x400" as im %}
+        <img src="{{ im.url }}" class="img-responsive center-block">
+{% endthumbnail %}
+{% if photo.title %}
+        <div class="carousel-caption">{{ photo.title }}</div>
+{% endif %}
+    </div>
+{% endfor %}
+    </div>
+    <a class="left carousel-control" href="#carousel-example-{{ instance.id }}" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-{{ instance.id }}" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+{% addtoblock "js" %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+{% endaddtoblock %}

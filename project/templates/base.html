@@ -1,0 +1,17 @@
+{% load cms_tags sekizai_tags menu_tags %}
+<html>
+  <head>
+      <title>{% page_attribute "page_title" %}</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      {% render_block "css" %}
+  </head>
+  <body>
+    <div class="container">
+      {% cms_toolbar %}
+      {% show_menu 0 0 0 0 %}
+      {% placeholder base_content %}
+      {% block base_content %}{% endblock %}
+      {% render_block "js" %}
+    </div>
+  </body>
+</html>
